@@ -8,10 +8,14 @@
 
 import UIKit
 
+@IBDesignable
 class PlayingCardView: UIView {
 
-    var rank: Int = 12 { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    @IBInspectable
+    var rank: Int = 5 { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    @IBInspectable
     var suit: String = "♥️" { didSet { setNeedsDisplay(); setNeedsLayout() } }
+    @IBInspectable
     var isFaceUp: Bool = true { didSet { setNeedsDisplay(); setNeedsLayout() } }
     
 //    to keep track of accessibility whenever the font size is increased or decreased
@@ -70,13 +74,11 @@ class PlayingCardView: UIView {
         roundedRect.fill()
         
         if isFaceUp {
-            if let faceCardImage = UIImage(named: rankString+suit) {
+            if let faceCardImage = UIImage(named: rankString+suit, in: Bundle(for: self.classForCoder), compatibleWith: traitCollection) {
                 faceCardImage.draw(in: bounds.zoom(by: SizeRatio.faceCardImageSizeToBoundsSize))
-            } else {
-                drawPips()
             }
         } else {
-            if let cardBackImage = UIImage(named: "cardback") {
+            if let cardBackImage = UIImage(named: "cardback", in: Bundle(for: self.classForCoder), compatibleWith: traitCollection) {
                 cardBackImage.draw(in: bounds)
             }
         }
