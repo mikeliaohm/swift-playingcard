@@ -59,7 +59,7 @@ class PlayingCardView: UIView {
         label.attributedText = cornerString
         label.frame.size = CGSize.zero
         label.sizeToFit()
-        label.isHidden = !isFaceUp // if card faces down, lable is hidden
+        label.isHidden = !isFaceUp // if card faces down, label is hidden
     }
     
     override func layoutSubviews() {
